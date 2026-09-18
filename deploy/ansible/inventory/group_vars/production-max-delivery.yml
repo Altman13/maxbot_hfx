@@ -1,0 +1,10 @@
+---
+node_locale: "en_US.UTF-8"
+user:
+  user: "insitechdev"
+  group: "insitechdev"
+  uid: 2000
+  gid: 2000
+laravel_root_dir: "/data/apps/prod/hydroflex/max"
+laravel_storage_dir: "/data/apps/prod/hydroflex/max/storage"
+laravel_release_dir: "/data/apps/prod/hydroflex/max/release"

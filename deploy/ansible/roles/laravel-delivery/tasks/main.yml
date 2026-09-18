@@ -1,0 +1,93 @@
+---
+# tasks file for laravel-delivery
+- name: Make release directory
+  file:
+    path: "{{ laravel_root_dir }}/{{ laravel_app_version }}"
+    state: directory
+    owner: "{{ user.user }}"
+    group: "{{ user.group }}"
+  tags:
+    - deploy
+
+- name: Copy release to the destination server
+  copy:
+    src: "../../{{ laravel_app_version }}.zip"
+    dest: "{{ laravel_root_dir }}/{{ laravel_app_version }}/release.zip"
+    owner: "{{ user.user }}"
+    group: "{{ user.group }}"
+  tags:
+    - deploy
+
+- name: Uncompressed archive to destination server
+  unarchive:
+    src: "{{ laravel_root_dir }}/{{ laravel_app_version }}/release.zip"
+    dest: "{{ laravel_root_dir }}/{{ laravel_app_version }}"
+    owner: "{{ user.user }}"
+    group: "{{ user.group }}"
+    remote_src: yes
+  tags:
+    - deploy
+
+- name: Drop archive
+  file:
+    state: "absent"
+    path: "{{ laravel_root_dir }}/{{ laravel_app_version }}/release.zip"
+  tags:
+    - deploy
+
+- name: Check to exists release folder
+  stat: "path={{ laravel_root_dir }}/release"
+  register: release_exists
+  tags:
+    - laravel
+
+- name: Remove current release link
+  file:
+    path: "{{ laravel_root_dir }}/release"
+    state: absent
+  when: release_exists.stat.exists == True
+  tags:
+    - laravel
+
+- name: Make release link
+  file:
+    src: "{{ laravel_root_dir }}/{{ version }}"
+    dest: "{{ laravel_root_dir }}/release"
+    owner: "{{ user.user }}"
+    group: "{{ user.group }}"
+    state: link
+  tags:
+    - laravel
+
+- name: Remove current storage folder
+  file:
+    path: "{{ laravel_root_dir }}/{{ version }}/storage"
+    state: absent
+  when: release_exists.stat.exists == True
+  tags:
+    - laravel
+
+- name: Make storage link
+  file:
+    src: "{{ laravel_storage_dir }}"
+    dest: "{{ laravel_root_dir }}/{{ version }}/storage"
+    owner: "{{ user.user }}"
+    group: "{{ user.group }}"
+    state: link
+  tags:
+    - laravel
+    - storage
+
+- name: Clear php fpm cache
+  systemd:
+    name: "{{ php_fpm_service | default('php-fpm') }}"
+    state: reloaded
+    enabled: yes
+    daemon_reload: yes
+
+- name: Clear nginx fpm cache
+  systemd:
+    name: nginx
+    state: reloaded
+    enabled: yes
+    daemon_reload: yes

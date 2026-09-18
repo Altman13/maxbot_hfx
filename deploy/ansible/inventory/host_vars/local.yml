@@ -1,0 +1,72 @@
+---
+production_max:
+  BOT_MODE: "Max Maximov (production)"
+  TELEGRAM_API_KEY: "{{ telegram_api_key }}"
+  MAX_API_KEY: "{{ max_api_key }}"
+  OKDESK_API_KEY: "{{ okdesk_api_key }}"
+  ARM_API_KEY: "{{ arm_api_key }}"
+  ADMIN_API_KEY: "{{ admin_api_key }}"
+  ISSUE_TYPE : "hydroflex_new"
+  ISSUE_TYPE_HF_PLOTTER_ACTIVATION : "HF_plotter_activation"
+  ISSUE_TYPE_QR_OFFLINE_CUT : "qrCutRequest"
+  ISSUE_TITLE : "Гидрофлекс"
+  PLOTTER_ACTIVATION_TITLE : "Активация плоттера_HF"
+  QR_CUT_REQUEST_TITLE : "Разблокировать рез"
+  PROJECT_DIR: "/data/apps/prod/hydroflex/max/release"
+  DEBUG_ENV: false
+  OCR_PYTHON_INTERPRETER: /home/insitechdev/insitechdev/bin/python
+  MINI_APP_URL: https://armorjack-support-webhook.max.hf.bot.insitechdev.ru/index.html
+
+stage_max:
+  BOT_MODE: "Max Maximov (stage)"
+  TELEGRAM_API_KEY: "{{ telegram_api_key }}"
+  MAX_API_KEY: "{{ max_api_key }}"
+  OKDESK_API_KEY: "{{ okdesk_api_key }}"
+  ARM_API_KEY: "{{ arm_api_key }}"
+  ADMIN_API_KEY: "{{ admin_api_key }}"
+  ISSUE_TYPE : "hydroflex_new"
+  ISSUE_TYPE_HF_PLOTTER_ACTIVATION : "HF_plotter_activation"
+  ISSUE_TYPE_QR_OFFLINE_CUT : "qrCutRequest"
+  ISSUE_TITLE : "Гидрофлекс (stage)"
+  PLOTTER_ACTIVATION_TITLE : "Активация плоттера_HF (stage)"
+  QR_CUT_REQUEST_TITLE : "Разблокировать рез (stage)"
+  PROJECT_DIR: "/data/apps/stage/hydroflex/max/release"
+  DEBUG_ENV: false
+  OCR_PYTHON_INTERPRETER: python
+  MINI_APP_URL: https://armorjack-support-webhook-stage.max.hf.bot.insitechdev.ru/index.html
+
+production_telegram:
+  BOT_MODE: "Telegram (production)"
+  TELEGRAM_API_KEY: "{{ telegram_api_key }}"
+  MAX_API_KEY: "{{ max_api_key }}"
+  OKDESK_API_KEY: "{{ okdesk_api_key }}"
+  ARM_API_KEY: "{{ arm_api_key }}"
+  ADMIN_API_KEY: "{{ admin_api_key }}"
+  ISSUE_TYPE : "hydroflex_new"
+  ISSUE_TYPE_HF_PLOTTER_ACTIVATION : "HF_plotter_activation"
+  ISSUE_TYPE_QR_OFFLINE_CUT : "qrCutRequest"
+  ISSUE_TITLE : "Гидрофлекс"
+  PLOTTER_ACTIVATION_TITLE : "Активация плоттера_HF"
+  QR_CUT_REQUEST_TITLE : "Разблокировать рез"
+  PROJECT_DIR: "/data/apps/prod/hydroflex/telegram/release"
+  DEBUG_ENV: false
+  OCR_PYTHON_INTERPRETER: /home/insitechdev/insitechdev/bin/python
+  MINI_APP_URL: url
+
+stage_telegram:
+  BOT_MODE: "Telegram (stage)"
+  TELEGRAM_API_KEY: "{{ telegram_api_key }}"
+  MAX_API_KEY: "{{ max_api_key }}"
+  OKDESK_API_KEY: "{{ okdesk_api_key }}"
+  ARM_API_KEY: "{{ arm_api_key }}"
+  ADMIN_API_KEY: "{{ admin_api_key }}"
+  ISSUE_TYPE : "hydroflex_new"
+  ISSUE_TYPE_HF_PLOTTER_ACTIVATION : "HF_plotter_activation"
+  ISSUE_TYPE_QR_OFFLINE_CUT : "qrCutRequest"
+  ISSUE_TITLE : "Гидрофлекс (stage)"
+  PLOTTER_ACTIVATION_TITLE : "Активация плоттера_HF (stage)"
+  QR_CUT_REQUEST_TITLE : "Разблокировать рез (stage)"
+  PROJECT_DIR: "/data/apps/stage/hydroflex/telegram/release"
+  DEBUG_ENV: false
+  OCR_PYTHON_INTERPRETER: python
+  MINI_APP_URL: url

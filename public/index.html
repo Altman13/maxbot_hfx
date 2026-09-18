@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://st.max.ru/js/max-web-app.js"></script>
+    <title>MAX QR WebApp</title>
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const maxApp = window.WebApp;
+
+            if (!maxApp) {
+                alert("Эта страница доступна только внутри MAX Web App.");
+                console.warn("MAX Web App не доступен.");
+                return;
+            }
+
+            maxApp.ready();
+            const scanQR = async () => {
+                try {
+                    const qrData = await maxApp.openCodeReader(true);
+                    
+                    const payload = {
+                        init_data: maxApp.initData,
+                        init_data_unsafe: maxApp.initDataUnsafe,
+                        qrcode_data: qrData,
+                    };
+
+                    try {
+                        const res = await fetch("https://url", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(payload),
+                        });
+
+                        const contentType = res.headers.get("Content-Type") || "";
+                        const responseData = contentType.includes("application/json")
+                            ? await res.json()
+                            : await res.text();
+
+                        console.log("Ответ от сервера:", responseData);
+                    } catch (err) {
+                        console.error("Ошибка отправки данных:", err);
+                    }
+                } catch (err) {
+                    console.log("Сканирование отменено или ошибка:", err);
+                }
+                maxApp.close();
+            };
+
+            scanQR();
+        });
+    </script>
+</body>
+</html>

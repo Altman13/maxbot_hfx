@@ -1,0 +1,6 @@
+---
+# defaults file for laravel-delivery
+laravel_app_version: "1.0.1-1"
+laravel_root_dir: "/var/www/laravel"
+laravel_storage_dir: "/var/www/laravel/storage"
+laravel_release_dir: "/var/www/laravel/release"

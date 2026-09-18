@@ -1,0 +1,11 @@
+---
+## Bootstrap your server
+- hosts: all
+  remote_user: root
+  become: yes
+  vars:
+    node_locale: "en_US.UTF-8"
+  roles:
+    - deploy
+    - laravel
+    - php-fpm

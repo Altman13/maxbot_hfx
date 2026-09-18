@@ -1,0 +1,4 @@
+---
+# defaults file for laravel-env
+laravel_environment: "production"
+laravel_app_version: "1.0.1-1"

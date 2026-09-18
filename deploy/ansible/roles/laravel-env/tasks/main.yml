@@ -1,0 +1,9 @@
+---
+# tasks file for laravel-env
+- name: Setup laravel framework config
+  template:
+    src: "env.j2"
+    dest: "{{ work_dir }}/.env"
+    mode: 0644
+  tags:
+    - configure

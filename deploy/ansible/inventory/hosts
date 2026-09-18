@@ -1,0 +1,25 @@
+local ansible_host=127.0.0.1
+
+[stage-telegram-environment]
+local
+
+[stage-telegram-delivery]
+stage-telegram-a002 ansible_host=a002.tghf.eu-north.insitechdev.ru
+
+[production-telegram-environment]
+local
+
+[production-telegram-delivery]
+production-telegram-a001 ansible_host=a001.tghf.eu-north.insitechdev.ru ansible_python_interpreter=/usr/bin/python3
+
+[stage-max-environment]
+local
+
+[stage-max-delivery]
+stage-max-a002 ansible_host=a002.tghf.eu-north.insitechdev.ru
+
+[production-max-environment]
+local
+
+[production-max-delivery]
+production-max-a001 ansible_host=a001.tghf.eu-north.insitechdev.ru ansible_python_interpreter=/usr/bin/python3
