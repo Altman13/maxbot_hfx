@@ -42,6 +42,10 @@ class UnsupportedTypeHandlerTest extends TestCase
         $this->qrCodeHelper = Mockery::mock(QrCodeHelper::class);
         $this->okDeskHelper = Mockery::mock(OkDeskHelper::class);
 
+        $this->maxBot->shouldReceive('sendMessage')->andReturn([])->byDefault();
+        $this->maxBot->shouldReceive('uploadAndSendPhoto')->andReturn([])->byDefault();
+        $this->stateFileHandler->shouldReceive('setStateField')->andReturnNull()->byDefault();
+
         $this->handler = new UnsupportedTypeHandler(
             $this->stateFileHandler,
             $this->menuCreateAction,

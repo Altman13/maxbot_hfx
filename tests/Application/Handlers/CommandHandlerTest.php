@@ -36,6 +36,8 @@ class CommandHandlerTest extends TestCase
         $this->menuCreateAction = Mockery::mock(MenuCreateAction::class);
         $this->maxBot = Mockery::mock(MaxBotHelper::class);
         $this->okdeskHelper = Mockery::mock(OkDeskHelper::class);
+        $this->maxBot->shouldReceive('sendMessage')->andReturn([])->byDefault();
+        $this->maxBot->shouldReceive('uploadAndSendPhoto')->andReturn([])->byDefault();
 
         $this->handler = new CommandHandler(
             $this->logger,
@@ -125,11 +127,15 @@ class CommandHandlerTest extends TestCase
 
     public function testHandleStartAndDeleteReturnsFalseForOtherText(): void
     {
+        $this->stateFileHandler->shouldReceive('getStateField')
+            ->with('123', 'issueId')->andReturn('');
+        $this->stateFileHandler->shouldReceive('getStateField')
+            ->with('123', 'phone_number')->andReturn('');
+
         $result = $this->handler->handleStartAndDelete('какой-то текст', '123');
 
         $this->assertFalse($result);
     }
-
     // ============================================================
     // handleCommandIfRequestWithoutAuth
     // ============================================================
