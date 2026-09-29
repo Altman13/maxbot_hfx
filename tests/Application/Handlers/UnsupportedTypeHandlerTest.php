@@ -180,16 +180,13 @@ class UnsupportedTypeHandlerTest extends TestCase
         $message = ['voice' => ['file_id' => 'xxx']];
 
         $result = $this->handler->handle(
-            State::Main_Menu->value,
+            '',
             $message,
             '123',
             State::Main_Menu->value
         );
 
-        // Обрати внимание: логика в коде для $text === State::Main_Menu->value
-        // сначала проверяет медиа, но при пустом "не Create_Request" отправляет меню.
-        // Здесь важно, что метод не падает и возвращает true/false.
-        $this->assertIsBool($result);
+        $this->assertTrue($result);
     }
 
     public function testHandleReturnsFalseForValidMenuText(): void

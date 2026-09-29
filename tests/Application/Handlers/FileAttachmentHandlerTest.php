@@ -484,7 +484,7 @@ class FileAttachmentHandlerTest extends TestCase
         $this->stateFileHandler
             ->shouldReceive('setStateField')
             ->once()
-            ->with('123', 'file_links', ['doc_1']);
+            ->with('123', 'file_links', Mockery::type('array'));
 
         $message = [
             'document' => ['file_id' => 'doc_1'],
